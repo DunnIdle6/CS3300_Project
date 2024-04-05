@@ -6,7 +6,7 @@
     <p>About: {{band.about}}</p>
     <p>Members:
         {% for musician in Members %}
-            {{musician.name}},
+            <a href="{{musician.get_absolute_url}}">{{musician.name}}</a>,
         {% endfor %}
     </P>
 

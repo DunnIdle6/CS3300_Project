@@ -1,0 +1,14 @@
+{% extends 'ensembled_app\base_template.html' %}
+
+{% block content %}
+    <h2>{{Musician.name}}</h2>
+    <p>Email: {{Musician.email}}</p>
+    <p>About: {{Musician.about}}</p>
+    <p>Instruments: {{Musician.instruments}}</P>
+    <p>Bands:
+        {% for band in Bands %}
+            <a href="{{band.get_absolute_url}}">{{band.name}}</a>,
+        {% endfor %}
+    </P>
+
+{% endblock %}

@@ -23,3 +23,16 @@ class BandDetailView(generic.DetailView):
         context = super(BandDetailView, self).get_context_data(**kwargs)
         context['Members'] = Musician.objects.all().filter(Bands=self.get_object())
         return context
+    
+class MusicianListView(generic.ListView):
+    model = Musician
+    context_object_name = 'Musician_list'
+
+class MusicianDetailView(generic.DetailView):
+    model = Musician
+    context_object_name = 'Musician'
+    #get all their joined bands
+    def get_context_data(self, **kwargs):
+        context = super(MusicianDetailView, self).get_context_data(**kwargs)
+        context['Bands'] = Band.objects.all().filter(members=self.get_object())
+        return context

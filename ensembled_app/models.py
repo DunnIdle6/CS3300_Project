@@ -5,6 +5,7 @@ from django.urls import reverse
 class Musician(models.Model):
     name = models.CharField(max_length=100)
     email = models.CharField(max_length=100, blank=True)
+    about = models.TextField(blank=True)
     #bands
     instruments = models.CharField(max_length=100)
     isLooking = models.BooleanField(default=True)

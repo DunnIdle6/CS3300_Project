@@ -12,4 +12,10 @@ urlpatterns = [
 
     #page for a list of bands
     path('bands/', views.BandsListView.as_view(), name='bands'),
+
+    #page for list of musicians
+    path('musicians/', views.MusicianListView.as_view(), name='musicians'),
+
+    #page for individual musician
+    path('musician/<int:pk>', views.MusicianDetailView.as_view(), name='musician-detail'),
 ]
