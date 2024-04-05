@@ -18,24 +18,26 @@ class Musician(models.Model):
 class Band(models.Model):
     name = models.CharField(max_length=100)
     GENRES = (
-        ("ALT","Alternative"),
-        ("BLU","Blues"),
-        ("CLA","Classical"),
-        ("CON","Concert Band"),
-        ("CNT","Country"),
-        ("ELE","Electronic"),
-        ("FLK","Folk"),
-        ("HPH","Hip Hop"),
-        ("JAZ","Jazz"),
-        ("LTN","Latin"),
-        ("MET","Metal"),
-        ("ORC","Orchestral"),
-        ("POP","Pop"),
-        ("RAB","R&B"),
-        ("RCK","Rock"),
-        ("WLD","World")
+        ("Alternative","Alternative"),
+        ("Blues","Blues"),
+        ("Classical","Classical"),
+        ("Concert Band","Concert Band"),
+        ("Country","Country"),
+        ("Electronic","Electronic"),
+        ("Folk","Folk"),
+        ("Hip Hop","Hip Hop"),
+        ("Jazz","Jazz"),
+        ("Latin","Latin"),
+        ("Metal","Metal"),
+        ("Orchestral","Orchestral"),
+        ("Pop","Pop"),
+        ("R&B","R&B"),
+        ("Rock","Rock"),
+        ("World","World"),
+        ("Other", "Other")
     )
     genre = models.CharField(max_length=100, choices=GENRES)
+    about = models.TextField(blank=True)
     isOpen = models.BooleanField(default=True)
     members = models.ManyToManyField(Musician, related_name="Bands")
 

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ensembled_app',
+    'django_bootstrap5',
 ]
 
 AUTHENTICATION_BACKENDS = [
