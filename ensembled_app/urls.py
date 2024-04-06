@@ -8,14 +8,14 @@ urlpatterns = [
     path('logout/', auth_views.LoginView.as_view(), name='logout'),
 
     #each band's individual page
-    path('band/<int:pk>', views.BandDetailView.as_view(), name='band-detail'),
-
+    path('bands/<int:pk>', views.BandDetailView.as_view(), name='band-detail'),
     #page for a list of bands
     path('bands/', views.BandsListView.as_view(), name='bands'),
+    #page to add a band
+    path('bands/create/', views.BandCreate, name='band-create'),
 
     #page for list of musicians
     path('musicians/', views.MusicianListView.as_view(), name='musicians'),
-
     #page for individual musician
-    path('musician/<int:pk>', views.MusicianDetailView.as_view(), name='musician-detail'),
+    path('musicians/<int:pk>', views.MusicianDetailView.as_view(), name='musician-detail'),
 ]

@@ -1,7 +1,8 @@
 {% extends 'ensembled_app\base_template.html' %}
+{% load django_bootstrap5 %}
 
 {% block content%}
-    <h1>Checkout Some Bands Near You!</h1>
+    <h2>Checkout Some Bands Near You!</h2>
     {% if Band_list%}
         <ul>
             {% for band in Band_list%}
@@ -13,5 +14,7 @@
     {% else %}
         <p>There are no bands near you</P>
     {% endif %}
+
+    <a class="btn btn-primary" href="{% url 'band-create' %}" role="button">Start New Band</a>
 
 {% endblock%}

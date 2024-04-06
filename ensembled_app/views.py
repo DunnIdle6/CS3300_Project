@@ -23,7 +23,19 @@ class BandDetailView(generic.DetailView):
         context = super(BandDetailView, self).get_context_data(**kwargs)
         context['Members'] = Musician.objects.all().filter(Bands=self.get_object())
         return context
-    
+
+def BandCreate(request):
+    if request.method == 'POST':
+        form = BandForm(request.POST)
+        if form.is_valid():
+            band = form.save()
+            return redirect('band-detail', band.id)
+    else:
+        form = BandForm()
+
+    return render(request, 'ensembled_app/band_create.html', {'form': form})
+
+
 class MusicianListView(generic.ListView):
     model = Musician
     context_object_name = 'Musician_list'
