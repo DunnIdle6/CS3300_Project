@@ -12,6 +12,7 @@ from django.shortcuts import redirect
 def index(request):
     return render(request, 'ensembled_app/index.html')
 
+
 class BandsListView(generic.ListView):
     model = Band
     context_object_name = 'Band_list'
@@ -47,6 +48,15 @@ def BandUpdate(request, pk):
         form = BandForm(instance=band)
 
     return render(request, 'ensembled_app/band_update.html', {'form': form})
+
+def BandDelete(request, pk):
+    band = Band.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        band.delete()
+        return redirect('bands')
+
+    return render(request, 'ensembled_app/band_delete.html', {'band': band})
 
 class MusicianListView(generic.ListView):
     model = Musician
