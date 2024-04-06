@@ -70,3 +70,36 @@ class MusicianDetailView(generic.DetailView):
         context = super(MusicianDetailView, self).get_context_data(**kwargs)
         context['Bands'] = Band.objects.all().filter(members=self.get_object())
         return context
+    
+def MusicianCreate(request):
+    if request.method == 'POST':
+        form = MusicianForm(request.POST)
+        if form.is_valid():
+            musician = form.save()
+            return redirect('musician-detail', musician.id)
+    else:
+        form = MusicianForm()
+
+    return render(request, 'ensembled_app/musician_create.html', {'form': form})
+
+def MusicianUpdate(request, pk):
+    musician = Musician.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = MusicianForm(request.POST, instance=musician)
+        if form.is_valid():
+            form.save()
+            return redirect('musician-detail', musician.pk)
+    else:
+        form = MusicianForm(instance=musician)
+
+    return render(request, 'ensembled_app/musician_update.html', {'form': form})
+
+def MusicianDelete(request, pk):
+    musician = Musician.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        musician.delete()
+        return redirect('musicians')
+
+    return render(request, 'ensembled_app/musician_delete.html', {'musician': musician})

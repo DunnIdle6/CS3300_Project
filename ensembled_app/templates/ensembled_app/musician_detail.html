@@ -11,4 +11,8 @@
         {% endfor %}
     </P>
 
+    <a class="btn btn-secondary" href="{% url 'musician-update' Musician.pk%}" role="button">Edit</a>
+    <a class="btn btn-secondary" href="{% url 'musician-delete' Musician.pk%}" role="button">Delete</a>
+    
+
 {% endblock %}

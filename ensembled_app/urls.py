@@ -20,4 +20,8 @@ urlpatterns = [
     path('musicians/', views.MusicianListView.as_view(), name='musicians'),
     #page for individual musician
     path('musicians/<int:pk>', views.MusicianDetailView.as_view(), name='musician-detail'),
+    #crude pages for musicians
+    path('musician/create/', views.MusicianCreate, name='musician-create'),
+    path('musician/update/<int:pk>', views.MusicianUpdate, name='musician-update'),
+    path('musician/delete/<int:pk>', views.MusicianDelete, name='musician-delete'),
 ]
