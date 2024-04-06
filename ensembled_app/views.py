@@ -35,6 +35,18 @@ def BandCreate(request):
 
     return render(request, 'ensembled_app/band_create.html', {'form': form})
 
+def BandUpdate(request, pk):
+    band = Band.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = BandForm(request.POST, instance=band)
+        if form.is_valid():
+            form.save()
+            return redirect('band-detail', band.pk)
+    else:
+        form = BandForm(instance=band)
+
+    return render(request, 'ensembled_app/band_update.html', {'form': form})
 
 class MusicianListView(generic.ListView):
     model = Musician

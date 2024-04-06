@@ -11,8 +11,9 @@ urlpatterns = [
     path('bands/<int:pk>', views.BandDetailView.as_view(), name='band-detail'),
     #page for a list of bands
     path('bands/', views.BandsListView.as_view(), name='bands'),
-    #page to add a band
+    #page to create/update a band
     path('bands/create/', views.BandCreate, name='band-create'),
+    path('bands/update/<int:pk>', views.BandUpdate, name='band-update'),
 
     #page for list of musicians
     path('musicians/', views.MusicianListView.as_view(), name='musicians'),
