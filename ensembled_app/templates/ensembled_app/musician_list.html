@@ -1,18 +1,30 @@
 {% extends 'ensembled_app\base_template.html' %}
 
 {% block content%}
-    <h1>Checkout some of our amazing musicians!</h1>
-    {% if Musician_list%}
-        <ul>
-            {% for musician in Musician_list%}
-                <li>
-                    <a href="{{musician.get_absolute_url}}">{{musician.name}}</a>
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no musicians signed up</P>
-    {% endif %}
 
-    <a class="btn btn-primary" href="{% url 'musician-create' %}" role="button">Create a page</a>
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Checkout some of our amazing musicians!</h2>
+            {% if Musician_list%}
+                
+                {% for musician in Musician_list%}
+                    <div class ="col-md-4">
+                        <div class="card">
+                            <h4 class="card-header"><a href="{{musician.get_absolute_url}}">{{musician.name}}</a></h4>
+                            <div class="card-body">
+                                <p class="card-text">Instruments: {{musician.instruments}}</p>
+                                <p class="card-text">About: {{musician.about}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>There are no bands near you</P>
+            {% endif %}
+        </div>
+        <p></p>
+        <a class="btn btn-primary" href="{% url 'musician-create' %}" role="button">Create a page</a>
+    </div>
+
+
 {% endblock%}

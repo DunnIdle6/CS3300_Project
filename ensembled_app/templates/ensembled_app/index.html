@@ -4,10 +4,23 @@
 
 <!-- Replace block content in base_template.html -->
 {% block content %}
-<h1>Ensembled</h1>
-
-
-<h2>Bringing Muscians Together Since 2024</h2>
+    <div class = "container-fluid">
+        <div class="row">
+            <div class ="col-md-12">
+                <div class="jumbotron" style="background-color: rgn(225, 225, 225);">
+                    <h1 class="display-3">Ensembled</h1>
+                    <h3>Bringing Muscians Together Since 2024</h3>
+                    <p></p>
+                    <p>
+                        Visit the <a href="{% url 'bands' %}">Bands Page</a> to see a list of active bands.
+                    </p>
+                    <p>
+                        Or visit the <a href="{% url 'musicians' %}">Musicans Page</a> to see a list of musicians on our website!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}

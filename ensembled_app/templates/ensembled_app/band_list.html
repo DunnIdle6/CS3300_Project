@@ -2,19 +2,27 @@
 {% load django_bootstrap5 %}
 
 {% block content%}
-    <h2>Checkout Some Bands Near You!</h2>
-    {% if Band_list%}
-        <ul>
-            {% for band in Band_list%}
-                <li>
-                    <a href="{{band.get_absolute_url}}">{{band.name}}</a>: {{band.genre}}
-                </li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>There are no bands near you</P>
-    {% endif %}
-
-    <a class="btn btn-primary" href="{% url 'band-create' %}" role="button">Start New Band</a>
-
+    <div class="container-fluid">
+        <div class="row">
+            <h2>Checkout some bands near you!</h2>
+            {% if Band_list%}
+                
+                {% for band in Band_list%}
+                    <div class ="col-md-4">
+                        <div class="card">
+                            <h4 class="card-header"><a href="{{band.get_absolute_url}}">{{band.name}}</a></h4>
+                            <div class="card-body">
+                                <p class="card-text">Genre: {{band.genre}}</p>
+                                <p class="card-text">About: {{band.about}}</p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <p>There are no bands near you</P>
+            {% endif %}
+        </div>
+        <p></p>
+        <a class="btn btn-primary" href="{% url 'band-create' %}" role="button">Start New Band</a>
+    </div>
 {% endblock%}
