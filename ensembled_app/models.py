@@ -40,7 +40,7 @@ class Band(models.Model):
     genre = models.CharField(max_length=100, choices=GENRES)
     about = models.TextField(blank=True)
     isOpen = models.BooleanField(default=True)
-    members = models.ManyToManyField(Musician, related_name="Bands")
+    members = models.ManyToManyField(Musician, related_name="Bands", blank=True)
 
     def __str__(self):
         return self.name
