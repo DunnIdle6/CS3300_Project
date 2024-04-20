@@ -3,5 +3,6 @@ from .models import *
 
 admin.site.register(Band)
 admin.site.register(Musician)
+admin.site.register(Event)
 
 # Register your models here.
