@@ -2,8 +2,8 @@
 
 {% block content%}
 <div class="clearfix">
-	<a class="btn btn-info left" href="calendar/?{'{ prev_month }}"> Previous Month </a>
-	<a class="btn btn-info right" href="calendar/?{'{ next_month }}"> Next Month </a>
+	<a class="btn btn-info left" href="?{{ prev_month }}"> Previous Month </a>
+	<a class="btn btn-info right" href="?{{ next_month }}"> Next Month </a>
 </div>
 {{calendar}}
 {% endblock content %}
