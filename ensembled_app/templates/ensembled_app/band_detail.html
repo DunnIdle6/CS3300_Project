@@ -13,6 +13,11 @@
                 {% endfor %}
             </P>
 
+            <h3>Upcoming Concerts:</h3>
+                {% for concert in Concerts %}
+                    <p>{{concert.title}} - {{concert.start_time}}</p>
+                {% endfor %}
+
             <a class="btn btn-secondary" href="{% url 'band-update' band.id%}" role="button">Edit</a>
             <a class="btn btn-secondary" href="{% url 'band-delete' band.id%}" role="button">Delete</a>
         </div>

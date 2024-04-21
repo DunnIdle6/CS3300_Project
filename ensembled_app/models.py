@@ -50,6 +50,7 @@ class Band(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=200)
+    bands = models.ManyToManyField(Band, related_name="Concerts", blank=True)
     GENRES = (
         ("Alternative","Alternative"),
         ("Blues","Blues"),

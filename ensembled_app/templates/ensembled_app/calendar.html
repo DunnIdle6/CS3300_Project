@@ -1,7 +1,10 @@
 {% extends 'ensembled_app\base_template.html' %}
 
 {% block content%}
+<div class="clearfix">
+	<a class="btn btn-info left" href="calendar/?{'{ prev_month }}"> Previous Month </a>
+	<a class="btn btn-info right" href="calendar/?{'{ next_month }}"> Next Month </a>
+</div>
 {{calendar}}
 {% endblock content %}
 
-<link rel="stylesheet" href="static\ensembled_app\css\styles.css">
