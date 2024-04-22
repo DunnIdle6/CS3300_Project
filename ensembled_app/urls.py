@@ -26,4 +26,10 @@ urlpatterns = [
     path('musician/delete/<int:pk>', views.MusicianDelete, name='musician-delete'),
 
     path('calendar/', views.CalendarView.as_view(), name='calendar'),
+
+    path('event/create/', views.EventCreate, name='event-create'),
+    path('event/update/<int:pk>', views.EventUpdate, name='event-update'),
+    path('event/delete/<int:pk>', views.EventDelete, name='event-delete'),
+    path('event/<int:pk>', views.EventDetailView.as_view(), name='event-detail'),
+
 ]

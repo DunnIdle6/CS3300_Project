@@ -136,7 +136,6 @@ def prev_month(d):
     month = 'month=' + str(prev_month.year) + '-' + str(prev_month.month)
     return month
 
-
 def next_month(d):
     days_in_month = calendar.monthrange(d.year, d.month)[1]
     last = d.replace(day=days_in_month)
@@ -149,3 +148,44 @@ def get_date(req_day):
         year, month = (int(x) for x in req_day.split('-'))
         return datetime(year, month, day=1)
     return datetime.today()
+
+class EventDetailView(generic.DetailView):
+    model = Event
+    #get all the members
+    def get_context_data(self, **kwargs):
+        context = super(EventDetailView, self).get_context_data(**kwargs)
+        context['Bands'] = Band.objects.all().filter(Concerts=self.get_object())
+        return context
+
+def EventCreate(request):
+    if request.method == 'POST':
+        form = EventForm(request.POST)
+        if form.is_valid():
+            event = form.save()
+            return redirect('band-detail', event.id)
+    else:
+        form = EventForm()
+
+    return render(request, 'ensembled_app/event_create.html', {'form': form})
+
+def EventUpdate(request, pk):
+    event = Event.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        form = EventForm(request.POST, instance=event)
+        if form.is_valid():
+            form.save()
+            return redirect('event-detail', event.pk)
+    else:
+        form = EventForm(instance=event)
+
+    return render(request, 'ensembled_app/event_update.html', {'form': form})
+
+def EventDelete(request, pk):
+    event = Event.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        event.delete()
+        return redirect('calendar')
+
+    return render(request, 'ensembled_app/event_delete.html', {'band': event})

@@ -15,7 +15,7 @@
 
             <h3>Upcoming Concerts:</h3>
                 {% for concert in Concerts %}
-                    <p>{{concert.title}} - {{concert.start_time}}</p>
+                    <p><a href="{% url 'event-detail' concert.id%}">{{concert.title}}</a> - {{concert.start_time}}</p>
                 {% endfor %}
 
             <a class="btn btn-secondary" href="{% url 'band-update' band.id%}" role="button">Edit</a>

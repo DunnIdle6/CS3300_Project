@@ -13,8 +13,8 @@ class Calendar(HTMLCalendar):
 	def formatday(self, day, events):
 		events_per_day = events.filter(start_time__day=day)
 		d = ''
-		for event in events_per_day:
-			d += f'<li> {event.title} </li>'
+		for concert in events_per_day:
+			d += f'<li> <a href="../event/{concert.id}">{concert.title}</a> </li>'
 
 		if day != 0:
 			return f"<td><span class='date'>{day}</span><ul> {d} </ul></td>"
