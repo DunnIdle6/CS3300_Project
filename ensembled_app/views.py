@@ -12,6 +12,8 @@ from django.utils.safestring import mark_safe
 from .utils import Calendar
 from datetime import timedelta
 import calendar
+from django.contrib import messages
+from django.contrib.auth.models import Group
 
 # Create your views here.
 def index(request):
@@ -189,3 +191,25 @@ def EventDelete(request, pk):
         return redirect('calendar')
 
     return render(request, 'ensembled_app/event_delete.html', {'band': event})
+
+def registerPage(request):
+    form = createUserForm()
+
+    if request.method == 'POST':
+        form = createUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            username = form.cleaned_data.get('username')
+            group = Group.objects.get(name='musician')
+            user.groups.add(group)
+            musician =  Musician.objects.create(user=user,)
+            musician.save()
+
+            messages.success(request, 'Account was created for ' + username)
+            return redirect('login')
+        
+    context = {'form':form}
+    return render(request, 'registration/register.html', context)
+
+
+
