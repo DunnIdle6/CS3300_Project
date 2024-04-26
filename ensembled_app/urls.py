@@ -33,5 +33,6 @@ urlpatterns = [
     path('event/<int:pk>', views.EventDetailView.as_view(), name='event-detail'),
 
     path('accounts/register/', views.registerPage, name='register_page'),
+    path('user/', views.userPage, name='user_page')
 
 ]

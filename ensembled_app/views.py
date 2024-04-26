@@ -14,6 +14,8 @@ from datetime import timedelta
 import calendar
 from django.contrib import messages
 from django.contrib.auth.models import Group
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import *
 
 # Create your views here.
 def index(request):
@@ -211,5 +213,15 @@ def registerPage(request):
     context = {'form':form}
     return render(request, 'registration/register.html', context)
 
-
+@login_required(login_url='login')
+def userPage(request):
+    musician = request.user.musician
+    form = MusicianForm(instance=musician)
+    print('musician', musician)
+    if request.method == 'POST':
+        form = MusicianForm(request.POST, request.FILES, instance=musician)
+        if form.is_valid():
+            form.save()
+    context = {'form':form}
+    return render(request, 'ensembled_app/user.html')
 

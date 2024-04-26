@@ -10,6 +10,7 @@ class Musician(models.Model):
     #bands
     instruments = models.CharField(max_length=200)
     isLooking = models.BooleanField(default=True)
+    user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -76,4 +77,4 @@ class Event(models.Model):
     start_time = models.DateTimeField()
     location = models.CharField(max_length=200)
 
-user = models.OneToOneField(User, null=True, on_delete=models.CASCADE)
+
