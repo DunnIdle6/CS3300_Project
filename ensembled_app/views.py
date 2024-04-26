@@ -34,6 +34,7 @@ class BandDetailView(generic.DetailView):
         context['Concerts'] = Event.objects.all().filter(bands=self.get_object())
         return context
 
+@login_required(login_url='login')
 def BandCreate(request):
     if request.method == 'POST':
         form = BandForm(request.POST)
@@ -45,6 +46,7 @@ def BandCreate(request):
 
     return render(request, 'ensembled_app/band_create.html', {'form': form})
 
+@login_required(login_url='login')
 def BandUpdate(request, pk):
     band = Band.objects.get(pk=pk)
 
@@ -58,6 +60,7 @@ def BandUpdate(request, pk):
 
     return render(request, 'ensembled_app/band_update.html', {'form': form})
 
+@login_required(login_url='login')
 def BandDelete(request, pk):
     band = Band.objects.get(pk=pk)
 
@@ -79,7 +82,8 @@ class MusicianDetailView(generic.DetailView):
         context = super(MusicianDetailView, self).get_context_data(**kwargs)
         context['Bands'] = Band.objects.all().filter(members=self.get_object())
         return context
-    
+
+@login_required(login_url='login')    
 def MusicianCreate(request):
     if request.method == 'POST':
         form = MusicianForm(request.POST)
@@ -91,6 +95,7 @@ def MusicianCreate(request):
 
     return render(request, 'ensembled_app/musician_create.html', {'form': form})
 
+@login_required(login_url='login')
 def MusicianUpdate(request, pk):
     musician = Musician.objects.get(pk=pk)
 
@@ -104,6 +109,7 @@ def MusicianUpdate(request, pk):
 
     return render(request, 'ensembled_app/musician_update.html', {'form': form})
 
+@login_required(login_url='login')
 def MusicianDelete(request, pk):
     musician = Musician.objects.get(pk=pk)
 
@@ -161,6 +167,7 @@ class EventDetailView(generic.DetailView):
         context['Bands'] = Band.objects.all().filter(Concerts=self.get_object())
         return context
 
+@login_required(login_url='login')
 def EventCreate(request):
     if request.method == 'POST':
         form = EventForm(request.POST)
@@ -172,6 +179,7 @@ def EventCreate(request):
 
     return render(request, 'ensembled_app/event_create.html', {'form': form})
 
+@login_required(login_url='login')
 def EventUpdate(request, pk):
     event = Event.objects.get(pk=pk)
 
@@ -185,6 +193,7 @@ def EventUpdate(request, pk):
 
     return render(request, 'ensembled_app/event_update.html', {'form': form})
 
+@login_required(login_url='login')
 def EventDelete(request, pk):
     event = Event.objects.get(pk=pk)
 

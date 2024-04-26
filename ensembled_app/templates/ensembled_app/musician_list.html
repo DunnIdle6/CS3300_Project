@@ -22,8 +22,10 @@
                 <p>There are no bands near you</P>
             {% endif %}
         </div>
-        <p></p>
-        <a class="btn btn-primary" href="{% url 'musician-create' %}" role="button">Create a page</a>
+        <br>
+        {% if user.is_authenticated %}
+            <a class="btn btn-primary" href="{% url 'musician-create' %}" role="button">Create a page</a>
+        {% endif %}
     </div>
 
 

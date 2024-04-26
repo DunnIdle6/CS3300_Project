@@ -1,11 +1,16 @@
 {% extends 'ensembled_app\base_template.html' %}
 
 {% block content%}
+{% if user.is_authenticated %}
+	<a class="btn btn-primary" href="../event/create/"> Hold a Concert! </a>
+{% endif %}
+<br>
+<br>
 <div class="clearfix">
 	<a class="btn btn-info left" href="?{{ prev_month }}"> Previous Month </a>
 	<a class="btn btn-info right" href="?{{ next_month }}"> Next Month </a>
 </div>
 {{calendar}}
-<a class="btn btn-primary" href="../event/create/"> Hold a Concert! </a>
+
 {% endblock content %}
 
