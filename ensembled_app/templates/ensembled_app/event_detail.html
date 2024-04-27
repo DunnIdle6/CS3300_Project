@@ -13,8 +13,10 @@
                 {% endfor %}
             </P>
 
-            <a class="btn btn-secondary" href="{% url 'event-update' event.id%}" role="button">Edit</a>
-            <a class="btn btn-secondary" href="{% url 'event-delete' event.id%}" role="button">Delete</a>
+            {% if user.is_authenticated %}
+                <a class="btn btn-secondary" href="{% url 'event-update' event.id%}" role="button">Edit</a>
+                <a class="btn btn-secondary" href="{% url 'event-delete' event.id%}" role="button">Delete</a>
+            {% endif %}
         </div>
     </div>
 </div>
