@@ -1,6 +1,12 @@
 from django.test import TestCase
 from .models import * #import all the models for testing
 from .forms import *
+import time
+from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 #2test models, 2test forms, 2test views
 #checkout https://developer.mozilla.org/en-US/docs/Learn/Server-side/Django/Testing
@@ -85,4 +91,40 @@ class BandFormTest(TestCase):
         form = BandForm(data={})
         self.assertFalse(form.is_valid())
 
+#Thank you Olivia for sharing your technical documentation 
+class TestName(StaticLiveServerTestCase):
+    @classmethod
+    def setUpClass(cls):
+        super().setUpClass()
+        cls.browser = webdriver.Firefox()
+
+    @classmethod
+    def tearDownClass(cls):
+        cls.browser.quit()
+        super().tearDownClass()
+
+    def setUp(self):
+        super().setUp()
+
+    def test_Musician(self):
+        testMusician = Musician.objects.create(
+            name = 'name',
+            email = 'email@email.com',
+            about = 'about is about',
+            instruments = 'euphonium',
+            isLooking = True
+        )
+
+        self.browser.get(self.live_server_url)
+        self.browser.get(self.live_server_url + reverse('index'))
+        wait = WebDriverWait(self.browser, 15)
+
+        musicians_button = self.browser.find_element(By.CSS_SELECTOR, 'a.nav-link:nth-child(3)')
+        musicians_button.click()
+        create_button = self.browser.find_element(By.XPATH, '/html/body/div[2]/a')
+        create_button.click()
         
+        time.sleep(15)
+
+
+
